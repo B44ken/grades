@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: skyblue">
-<head style="background: tomato; font-size: 20px">
-  <meta charset="UTF-8">
-  <title>Grade Tracker</title>
-  <link rel="stylesheet" href="./bulma.css">
-  <script src="./storage.js"></script>
-  <script src="./logic.js"></script>
-  <script src="./dom.js" defer></script>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Grade Tracker</title>
+	<link rel="stylesheet" href="./bulma.css">
+	<script src="./data.js"></script>
+	<script src="./logic.js"></script>
+	<script src="./dom.js" defer></script>
+	<style>
+		@import url(bulma.css);
+		html {
+			background: #dadcea;
+		}
+		@media (-webkit-device-pixel-ratio: 2) {
+			html {
+			font-size: 28px;
+			}
+		}
+
+		.divider {
+			height: 0;
+			border: 1.5px solid #e0e0e0;
+		}
+
+		.pc50, .pc25 { display: inline-block; }
+
+		.pc50 { width: 49.5%; }
+		.pc25 { width: 24.5%; }
+	</style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div class="title pt-4 has-text-centered">Your Classes</div>
+
+<div class="has-text-centered mt-6">
+	<div class="is-12 has-text-centered title is-1">Grade Tracker</div>
+	<div class="has-text-centered subtitle mb-0">
+		<a>Settings</a>
+	</div>
+	<br>
+</div>
+
 <div class="m-4 columns is-multiline course-card-entry">
 	<div class="course-card-template column is-12 is-6-fullhd">
 		<div class="card is-clickable">
@@ -40,29 +68,60 @@
 </div>
 
 <div class="modal new-course-modal">
-	<div class="modal-background can-close-modal"></div>
+	<div class="modal-background"></div>
 	<div class="modal-card">
 		<div class="modal-card-head modal-card-title">
 			Add a Class
 		</div>
 		<div class="modal-card-body">
 			<div class="field label">
-				Name <input class="input" placeholder="Chemistry">
+				Name <input class="input course-name-input" placeholder="Chemistry">
 			</div>
 			<div class="field label">
-				Code <input class="input" placeholder="CHEM01">
+				Code <input class="input course-code-input" placeholder="CHEM01">
 			</div>
 			<div class="field label">
-				Credits <input type="number" class="input" placeholder="1.0">
+				Credits <input type="number" class="input course-credits-input" placeholder="1.0">
 			</div>
 		</div>
 	<div class="modal-card-foot">
-		<button class="button">Cancel</button>
-		<button class="button is-success">Add</button>
+		<button class="button is-success add-course-button">Add</button>
+		<div class="has-text-danger is-hidden fill-all-warn">Please fill out all fields!</p>
+	</div>
 	</div>
 	</div>
 </div>
-</div>
+
+
+<div class="modal course-details-modal is-active">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<div class="modal-card-head modal-card-title">
+				<span class="name">Physics</span>
+		</div>
+		<div class="modal-card-body">
+			Overall: <span class="percent">100%</span>
+
+			<div class="divider m-1"></div>
+
+			<div class="grades">
+				<div>
+					<div class="pc50">Test 1</div>
+					<div class="pc25">70 / 100</div>
+					<div class="pc25">70%</div>
+				</div>
+				<div>
+					<div class="pc50">Quiz 1</div>
+					<div class="pc25">14 / 18</div>
+					<div class="pc25">77%</div>
+				</div>
+			</div>
+
+			<div class="divider m-1"></div>
+			<a href="">Add Grade</a>
+		</div>
+		<div class="modal-card-foot"></div>
+	</div>
 </div>
 </body>
 </html>
