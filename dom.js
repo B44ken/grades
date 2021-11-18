@@ -18,12 +18,11 @@ const buildCourseList = (userData) => {
 		el.querySelector(".code").textContent = course.code
 		el.querySelector(".percent").textContent = percent(gradeAverage(course.grades))
 		
+		el.courseCode = course.code
 
 		el.addEventListener("click", (event) => {
 			var courseData = userData.courses.find(course => course.code == el.courseCode)
-			if(!courseData) {
-				
-			}
+			console.log(courseData, el.courseCode)
  			viewCourse(courseData)
 		})
 
