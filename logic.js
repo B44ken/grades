@@ -9,3 +9,13 @@ const gradeAverage = grades => {
 
 const percent = grade =>
 		Math.round(grade * 1000) / 10 + "%"
+
+const letterOntario = grade => {
+	grades = [[0.95, "A+"], [0.9, "A"], [0.85, "A-"],
+			  [0.8, "B+"], [0.73, "B"], [0.7, "B-"],
+			  [0.67, "C+"], [0.64, "C"], [0.6, "C-"],
+			  [0.57, "D+"], [0.54, "D"], [0.5, "D-"], 
+			  [0.0, "F"]]
+	for(pair in grades)
+		if(grade >= grades[pair][0]) return grades[pair][1]
+}
