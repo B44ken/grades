@@ -17,9 +17,16 @@ const buildCourseList = (userData) => {
 		el.querySelector(".name").textContent = course.name
 		el.querySelector(".code").textContent = course.code
 		el.querySelector(".percent").textContent = percent(gradeAverage(course.grades))
+		
+
 		el.addEventListener("click", (event) => {
-			viewCourse(course)
+			var courseData = userData.courses.find(course => course.code == el.courseCode)
+			if(!courseData) {
+				
+			}
+ 			viewCourse(courseData)
 		})
+
 		cardEntry.insertBefore(el, cardTemplate)
 	}
 
@@ -28,6 +35,7 @@ const buildCourseList = (userData) => {
 }
 
 const viewCourse = (course) => {
+
 	var detailsModal = $(".course-details-modal")
 	detailsModal.classList.add("is-active")
 
