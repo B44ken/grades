@@ -7,6 +7,6 @@ const gradeAverage = grades => {
 		return Math.round(1000 * totalA / totalB) / 1000
 }
 
-const percentAverage = grades =>
-		Math.round(gradeAverage(grades) * 1000) / 10 + "%"
+const percent = grade =>
+		Math.round(grade * 1000) / 10 + "%"
 

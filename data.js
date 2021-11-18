@@ -15,11 +15,11 @@ if(localStorage.userData) {
 			"courses": [ {
 				"name": "History",
 				"code": "CHW3M",
-				"grades": [ [87, 100, 1], [52, 70, 1] ]
+				"grades": [ [87, 100, "Test A"], [52, 70, "Quiz A"] ]
 			}, {
 					"name": "Functions",
 					"code": "MCR3U",
-					"grades": [ [78, 100, 1], [35, 50, 1] ]
+					"grades": [ [78, 100, "Test A"], [35, 50, "Quiz A"] ]
 			} ]
 	}
 	saveLocally()

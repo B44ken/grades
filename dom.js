@@ -16,11 +16,35 @@ const buildCourseList = (userData) => {
 	const el = cardTemplate.cloneNode(true)
 		el.querySelector(".name").textContent = course.name
 		el.querySelector(".code").textContent = course.code
-		el.querySelector(".percent").textContent = percentAverage(course.grades)
+		el.querySelector(".percent").textContent = percent(gradeAverage(course.grades))
+		el.addEventListener("click", (event) => {
+			viewCourse(course)
+		})
 		cardEntry.insertBefore(el, cardTemplate)
 	}
+
 	cardTemplate.classList.add("is-hidden")
 	cardTemplate.classList.add("course-card-template")
+}
+
+const viewCourse = (course) => {
+	var detailsModal = $(".course-details-modal")
+	detailsModal.classList.add("is-active")
+
+	$(".details-name").textContent = course.name
+	$(".details-percent").textContent = percent(gradeAverage(course.grades))
+
+	
+	var gradeEntry = $(".details-grades")
+	gradeEntry.innerHTML = ""
+	for(var grade of course.grades) {
+		// innerhtml of user input = xss vulnerability
+		gradeEntry.innerHTML += `<div>
+			<div class="pc70">${grade[2]}</div>
+			<div class="pc15">${grade[0]} / ${grade[1]}</div>
+			<div class="pc15">${percent(grade[0] / grade[1])}</div>
+		</div>`
+	}
 }
 
 // MODAL INTERACTION
@@ -37,7 +61,6 @@ $(".new-course-modal").addEventListener("click", event => {
 
 $(".course-details-modal").addEventListener("click", event => {
 	var classZero = event.path[0].classList[0]
-	console.log(classZero)
 	if (classZero == "modal-background" || classZero == "")
 		$(".course-details-modal").classList.remove("is-active")
 })
@@ -63,7 +86,6 @@ $(".add-course-button").addEventListener("click", () => {
 	buildCourseList(userData)
 	saveLocally()
 })
-
-// doesnt work with tap? use touchstart?
+// exiting doesnt work with tap? use touchstart?
 
 buildCourseList(userData)
