@@ -27,7 +27,10 @@
 		.pc70, .pc15 { display: inline-block; }
 
 		.pc70 { width: 69.5%; }
-		.pc15 { width: 14.5%; }
+		.pc15 { 
+			width: 14.5%;
+			float: left;
+		}
 
 		.details-grade-input input[type="text"] {
 			width: 14em;
@@ -49,7 +52,7 @@
 <div class="has-text-centered mt-6">
 	<div class="is-12 has-text-centered title is-1">Grade Tracker</div>
 	<div class="has-text-centered subtitle mb-0">
-		<a>Settings</a>
+		<a class="settings-button">Settings</a>
 	</div>
 	<br>
 </div>
@@ -83,7 +86,7 @@
 </div>
 
 <div class="modal new-course-modal">
-	<div class="modal-background"></div>
+	<div class="modal-background new-course-background"></div>
 	<div class="modal-card">
 		<div class="modal-card-head modal-card-title">
 			Add a Class
@@ -107,9 +110,8 @@
 	</div>
 </div>
 
-
 <div class="modal course-details-modal">
-	<div class="modal-background"></div>
+	<div class="modal-background course-details-background"></div>
 	<div class="modal-card">
 		<div class="modal-card-head modal-card-title">
 				<b class="details-name"></b>
@@ -124,9 +126,19 @@
 			<div class="details-grade-input">
 				<input type="text" placeholder="Name" class="input"> &nbsp; 
 				<input type="number" placeholder="Earned mark" class="input">&nbsp;/&nbsp;<input type="number" placeholder="Max mark" class="input">
-				<a href="">Add Grade</a>
+				<a href="#" class="add-grade">Add Grade</a>
 			</div>
 		</div>
+		<div class="modal-card-foot"></div>
+	</div>
+</div>
+
+<div class="modal settings-modal">
+	<div class="modal-background settings-background"></div>
+	<div class="modal-card">
+		<div class="modal-card-head">
+		</div>
+		<div class="modal-card-body"></div>
 		<div class="modal-card-foot"></div>
 	</div>
 </div>

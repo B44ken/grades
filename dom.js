@@ -40,9 +40,9 @@ const viewCourse = (course) => {
 	for(var grade of course.grades) {
 		// innerhtml of user input = xss vulnerability
 		gradeEntry.innerHTML += `<div>
-			<div class="pc70">${grade[2]}</div>
-			<div class="pc15">${grade[0]} / ${grade[1]}</div>
-			<div class="pc15">${percent(grade[0] / grade[1])}</div>
+		<div class="pc70">${grade[2]}</div>
+		<div class="pc15">${grade[0]} / ${grade[1]}</div>
+		<div class="pc15">${percent(grade[0] / grade[1])}</div>
 		</div>`
 	}
 }
@@ -53,17 +53,6 @@ $(".new-course-button").addEventListener("click", event => {
 	$(".new-course-modal").classList.add("is-active")
 })
 
-$(".new-course-modal").addEventListener("click", event => {
-	var classZero = event.path[0].classList[0]
-	if (classZero == "modal-background" || classZero == "")
-	$(".new-course-modal").classList.remove("is-active")
-})
-
-$(".course-details-modal").addEventListener("click", event => {
-	var classZero = event.path[0].classList[0]
-	if (classZero == "modal-background" || classZero == "")
-		$(".course-details-modal").classList.remove("is-active")
-})
 
 $(".add-course-button").addEventListener("click", () => {
 	$(".fill-all-warn").classList.add("is-hidden")
@@ -86,6 +75,23 @@ $(".add-course-button").addEventListener("click", () => {
 	buildCourseList(userData)
 	saveLocally()
 })
-// exiting doesnt work with tap? use touchstart?
+
+$(".settings-button").addEventListener("click", event => {
+	$(".settings-modal").classList.add("is-active")
+})
+
+$(".new-course-background").addEventListener("click", event => {
+	$(".new-course-modal").classList.remove("is-active")
+
+})
+
+$(".course-details-background").addEventListener("click", event => {
+	$(".course-details-modal").classList.remove("is-active")
+})
+
+$(".settings-background").addEventListener("click", event => {
+	$(".settings-modal").classList.remove("is-active")
+})
+
 
 buildCourseList(userData)

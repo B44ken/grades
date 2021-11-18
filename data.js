@@ -15,7 +15,7 @@ if(localStorage.userData) {
 			"courses": [ {
 				"name": "History",
 				"code": "CHW3M",
-				"grades": [ [87, 100, "Test A"], [52, 70, "Quiz A"] ]
+				"grades": [ [87, 100, "Test B"], [52, 70, "Quiz B"] ]
 			}, {
 					"name": "Functions",
 					"code": "MCR3U",
