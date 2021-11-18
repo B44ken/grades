@@ -24,12 +24,17 @@
 			border: 1.5px solid #e0e0e0;
 		}
 
-		.pc70, .pc15 { display: inline-block; }
+		.big-info, .small-info, .delete-x {
+			display: inline-block;
+		}
 
-		.pc70 { width: 69.5%; }
-		.pc15 { 
-			width: 14.5%;
-			float: left;
+		.small-info { 
+			width: 4.5em;
+			float: right;
+		}
+		
+		.delete-x {
+			float: right;
 		}
 
 		.details-grade-input input[type="text"] {
@@ -89,7 +94,7 @@
 	<div class="modal-background new-course-background"></div>
 	<div class="modal-card">
 		<div class="modal-card-head modal-card-title">
-			Add a Class
+			<b>Add a Class</b>
 		</div>
 		<div class="modal-card-body">
 			<div class="field label">
@@ -136,8 +141,15 @@
 <div class="modal settings-modal">
 	<div class="modal-background settings-background"></div>
 	<div class="modal-card">
-		<div class="modal-card-head"></div>
-		<div class="modal-card-body"></div>
+		<div class="modal-card-head modal-card-title">
+			<b>Settings</b>
+		</div>
+		<div class="modal-card-body">
+			<div class="subtitle">Delete Courses</div>
+			<a href="">Functions</a>
+			<a href="">History</a>
+			<a href="">English</a>
+		</div>
 		<div class="modal-card-foot"></div>
 	</div>
 </div>

@@ -46,12 +46,22 @@ const viewCourse = (course) => {
 	gradeEntry.innerHTML = ""
 	for(var grade of course.grades) {
 		// innerhtml of user input = xss vulnerability
-		gradeEntry.innerHTML += `<div>
-		<div class="pc70">${grade[2]}</div>
-		<div class="pc15">${grade[0]} / ${grade[1]}</div>
-		<div class="pc15">${percent(grade[0] / grade[1])}</div>
-		</div>`
+		gradeEl = document.createElement("div")
+		gradeEl.innerHTML += `
+		<div class="big-info">${grade[2]}</div>
+		<a class="delete-x">x</a>
+		<div class="small-info">${grade[0]} / ${grade[1]}</div>
+		<div class="small-info">${percent(grade[0] / grade[1])}</div>`
+		gradeEl.entryName = grade[2]
+		$(".delete-x", gradeEl).addEventListener("click", (event) => {
+			event.path[1].remove()
+			course.grades = course.grades.filter(
+				grade => grade[2] == event.path[1].entryName)
+			saveLocally()
+		})
+		gradeEntry.appendChild(gradeEl)
 	}
+	
 }
 
 // MODAL INTERACTION
