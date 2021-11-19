@@ -22,7 +22,6 @@ const buildCourseList = (userData) => {
 
 		el.addEventListener("click", (event) => {
 			var courseData = userData.courses.find(course => course.code == el.courseCode)
-			console.log(courseData, el.courseCode)
  			viewCourse(courseData)
 		})
 
@@ -42,9 +41,44 @@ const viewCourse = (course) => {
 	$(".details-percent").textContent = percent(gradeAverage(course.grades))
 
 	
-	var gradeEntry = $(".details-grades")
-	gradeEntry.innerHTML = ""
-	for(var grade of course.grades) {
+	$(".details-grades").innerHTML = ""
+	for(var grade of course.grades)
+		addGrade(grade, course, false)
+	
+	$(".add-grade").addEventListener("click", (event) => {
+		arr = [
+			parseInt($("[Placeholder='Earned mark']").value),
+			parseInt($("[Placeholder='Max mark']").value),
+			$("[Placeholder='Name']").value
+		]
+		const existingNames = course.grades.map(grade => grade[2])
+		if(!(arr[0] && arr[1] && arr[2])) {
+			$(".add-grade-warn").textContent = "Please fill in all fields!"
+			$(".add-grade-warn").classList.remove("is-hidden")
+		} else if(existingNames.includes(arr[2])) {
+			$(".add-grade-warn").textContent = "Name is not unique!"
+			$(".add-grade-warn").classList.remove("is-hidden")
+		} else {
+			course.grades.push(arr)
+			saveLocally()
+			viewCourse(course)
+			$(".add-grade-warn").classList.add("is-hidden")
+		}
+	})
+}
+
+const addNewGrade = (grade, course) => {
+	if(course.grades.find(g => g[2] == grade[2])) {
+		alert("Grade already exists!")
+		return false
+	}
+	addGrade(grade, course)
+	return true
+}
+
+const addGrade = (grade, course) => {
+		var gradeEntry = $(".details-grades")
+		var name = $(".details-name").textContent
 		// innerhtml of user input = xss vulnerability
 		gradeEl = document.createElement("div")
 		gradeEl.innerHTML += `
@@ -54,15 +88,26 @@ const viewCourse = (course) => {
 		<div class="small-info">${percent(grade[0] / grade[1])}</div>`
 		gradeEl.entryName = grade[2]
 		$(".delete-x", gradeEl).addEventListener("click", (event) => {
+			var gradeName = $(".big-info", gradeEl).textContent
 			event.path[1].remove()
+			console.log(gradeName, course.grades)
+
+			// hack pls fix
+			if(course.grades.length == 1)
+				course.grades = []
+			
 			course.grades = course.grades.filter(
-				grade => grade[2] == event.path[1].entryName)
+				grade => grade[2] == gradeName)
 			saveLocally()
 		})
 		gradeEntry.appendChild(gradeEl)
-	}
-	
 }
+
+const deleteCourse = (courseName) => {
+	userData.courses = userData.courses.filter(c => c.name != courseName)
+	saveLocally()
+}
+
 
 // MODAL INTERACTION
 
@@ -94,6 +139,12 @@ $(".add-course-button").addEventListener("click", () => {
 })
 
 $(".settings-button").addEventListener("click", event => {
+	$(".delete-list").innerHTML = ""
+	for(var course of userData.courses) {
+		$(".delete-list").innerHTML += 
+			`<a onclick="deleteCourse('${course.name}')">${course.name}</a><br>`
+	}
+
 	$(".settings-modal").classList.add("is-active")
 })
 
@@ -109,6 +160,5 @@ $(".course-details-background").addEventListener("click", event => {
 $(".settings-background").addEventListener("click", event => {
 	$(".settings-modal").classList.remove("is-active")
 })
-
 
 buildCourseList(userData)
