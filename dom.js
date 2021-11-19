@@ -6,7 +6,7 @@ const buildCourseList = (userData) => {
 	var cardTemplate = $(".course-card-template")
 	var cardEntry = $(".course-card-entry")
 	// clean up selector?
-	var otherCards = document.querySelectorAll(".course-card-entry > :not(.course-card-template, .new-course-button)")
+	var otherCards = $$(".course-card-entry > :not(.course-card-template, .new-course-button)")
 
 	otherCards.forEach(card => card.remove())
 
