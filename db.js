@@ -1,10 +1,8 @@
 const save = (userData) => {
+    var slug = JSON.stringify(userData)
     try {
-        this.localStorage.userData = JSON.stringify(userData)
-    } catch {
-        this.localStorage.userData
-    }
-    console.log(userData)
+        this.localStorage.userData = slug
+    } catch {}
 }
 
 class UserData {
@@ -32,13 +30,14 @@ class UserData {
 
     // course: string
     deleteCourse(course) {
-        this.userData[course] = undefined
+        this.userData.courses[course] = undefined
         save(this.userData)
     }
 
     // grade: string, course: string
     deleteGrade(grade, course) {
-        this.userData[course].grades = this.userData[course].grades.filter(g => g[2] != grade)
+        this.userData.courses[course].grades =
+            this.userData.courses[course].grades.filter(g => g[2] != grade)
         save(this.userData)
     }
 
@@ -54,7 +53,7 @@ class UserData {
 
 var storage
 try {
-    sdfsd
+    storage = JSON.parse(this.localStorage.userData)
     // storage = JSON.parse(localStorage.userData)
 } catch {
     storage = {
@@ -82,4 +81,5 @@ try {
         }
     }
 }
-var data = new UserData(storage)
+var data = new UserData()
+data.userData = storage

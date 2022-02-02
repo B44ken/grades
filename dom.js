@@ -61,7 +61,8 @@ const viewCourse = (courseName) => {
 		} else {
 			console.log(course)
 			data.addGrade(arr, courseName)
-			viewCourse(course)
+			viewCourse(courseName)
+			console.log(course)
 			$(".add-grade-warn").classList.add("is-hidden")
 		}
 	})
@@ -78,9 +79,11 @@ const addGrade = (grade, course) => {
 		<div class="small-info">${grade[0]} / ${grade[1]}</div>
 		<div class="small-info">${percent(grade[0] / grade[1])}</div>`
 		gradeEl.entryName = grade[2]
+		$(".delete-x", gradeEl).id = grade[2]
 		$(".delete-x", gradeEl).addEventListener("click", (event) => {
-			var gradeName = $(".big-info", gradeEl).textContent
-			data.deleteCourse(gradeName, course.name)
+			var gradeName = event.target.id
+			data.deleteGrade(gradeName, name)
+			viewCourse(name)
 		})
 		gradeEntry.appendChild(gradeEl)
 }
@@ -112,16 +115,15 @@ $(".add-course-button").addEventListener("click", () => {
 		credits: courseCredits,
 	}
 	data.addCourse(courseName, courseMeta)
-	userData.courses.push(course)
 	$(".new-course-modal").classList.remove("is-active")
 	buildCourseList(data.getCourse(courseName))
 })
 
 $(".settings-button").addEventListener("click", event => {
 	$(".delete-list").innerHTML = ""
-	for(var course of listCourse()) {
+	for(var courseName of data.listCourses()) {
 		$(".delete-list").innerHTML += 
-			`<a onclick="deleteCourse('${course.name}')">${course.name}</a><br>`
+			`<a onclick="deleteCourse('${courseName}')">${courseName}</a><br>`
 	}
 
 	$(".settings-modal").classList.add("is-active")
