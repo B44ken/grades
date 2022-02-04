@@ -5,7 +5,7 @@ const save = (userData) => {
     } catch {}
 }
 
-export class UserData {
+class UserData {
     constructor(u) {
         if(u) {
             this.userData = u
@@ -57,11 +57,11 @@ export class UserData {
     }
 }
 
-export const downloadPrompt = () => {
+const downloadPrompt = () => {
     prompt("Your data:", JSON.stringify(localStorage.userData))
 }
 
-export const uploadPrompt = () => {
+const uploadPrompt = () => {
     try {
         var slug = JSON.parse(prompt("Paste data here:"))
         data.userData = slug
@@ -70,23 +70,23 @@ export const uploadPrompt = () => {
     }
 }
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-analytics.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-auth.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyC3kDFAdj6RxVWNmNG-J4c4ejFtiEbe-eQ",
-  authDomain: "p27grades.firebaseapp.com",
-  projectId: "p27grades",
-  storageBucket: "p27grades.appspot.com",
-  messagingSenderId: "258284114887",
-  appId: "1:258284114887:web:38fba093eb703193fe7fe2",
-  measurementId: "G-299T31CX5M"
-};
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-analytics.js";
+// import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-auth.js";
+// const firebaseConfig = {
+//   apiKey: "AIzaSyC3kDFAdj6RxVWNmNG-J4c4ejFtiEbe-eQ",
+//   authDomain: "p27grades.firebaseapp.com",
+//   projectId: "p27grades",
+//   storageBucket: "p27grades.appspot.com",
+//   messagingSenderId: "258284114887",
+//   appId: "1:258284114887:web:38fba093eb703193fe7fe2",
+//   measurementId: "G-299T31CX5M"
+// };
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+// const provider = new GoogleAuthProvider();
+// const auth = getAuth();
 
-export const firebaseLogin = () => {
+// export const firebaseLogin = () => {
 
-}
+// }

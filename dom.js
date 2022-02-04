@@ -1,6 +1,8 @@
 const $ = (e, root) => (root || document).querySelector(e)
 const $$ = (e, root) => (root || document).querySelectorAll(e)
 
+var data = new UserData()
+
 // lots of unneccessary adding and removing classes here
 const buildCourseList = () => {
 	var cardTemplate = $(".course-card-template")
