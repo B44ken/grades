@@ -12,7 +12,7 @@ class UserData {
             return
         } else {
             try { this.userData = JSON.parse(localStorage.userData) }
-            catch(exc) {    console.log(exc); this.userData = { courses: {} } }
+            catch(exc) { this.userData = { courses: {} } }
 
         }
     }
@@ -29,6 +29,7 @@ class UserData {
 
     // grade: [earned: int, max: int, name: string], course: string
     addGrade(grade, course) {
+        console.log("adding grade", { grade, course })
         // data.userData.courses["Functions"].grades.push([95, 100, 'Math']
         this.userData.courses[course].grades.push(grade)
         save(this.userData)

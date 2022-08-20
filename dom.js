@@ -24,7 +24,6 @@ const buildCourseList = () => {
 			el.id = courseName
 
 			el.addEventListener("click", (event) => {
-				console.log(el)
 				viewCourse(el.id)
 			})
 
@@ -46,28 +45,28 @@ const viewCourse = (courseName) => {
 	$(".details-grades").innerHTML = ""
 	for(var grade of course.grades)
 		addGrade(grade, course, false)
-	
-	$(".add-grade").addEventListener("click", (event) => {
-		arr = [
-			parseInt($("[Placeholder='Earned mark']").value),
-			parseInt($("[Placeholder='Max mark']").value),
-			$("[Placeholder='Name']").value
-		]
-		const existingNames = course.grades.map(grade => grade[2])
-		if(!(arr[0] && arr[1] && arr[2])) {
-			$(".add-grade-warn").textContent = "Please fill in all fields!"
-			$(".add-grade-warn").classList.remove("is-hidden")
-		} else if(existingNames.includes(arr[2])) {
-			$(".add-grade-warn").textContent = "Name is not unique!"
-			$(".add-grade-warn").classList.remove("is-hidden")
-		} else {
-			console.log(course)
-			data.addGrade(arr, courseName)
-			viewCourse(courseName)
-			console.log(course)
-			$(".add-grade-warn").classList.add("is-hidden")
-		}
-	})
+}
+
+const addGradeClick = (event) => {
+	var courseName = $(".details-name").textContent
+	var course = data.getCourse(courseName)
+	arr = [
+		parseInt($("[Placeholder='Earned mark']").value),
+		parseInt($("[Placeholder='Max mark']").value),
+		$("[Placeholder='Name']").value
+	]
+	const existingNames = course.grades.map(grade => grade[2])
+	if(!(arr[0] && arr[1] && arr[2])) {
+		$(".add-grade-warn").textContent = "Please fill in all fields!"
+		$(".add-grade-warn").classList.remove("is-hidden")
+	} else if(existingNames.includes(arr[2])) {
+		$(".add-grade-warn").textContent = "Name is not unique!"
+		$(".add-grade-warn").classList.remove("is-hidden")
+	} else {
+		data.addGrade(arr, courseName)
+		viewCourse(courseName)
+		$(".add-grade-warn").classList.add("is-hidden")
+	}
 }
 
 const addGrade = (grade, course) => {
