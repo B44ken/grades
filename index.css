@@ -2,7 +2,7 @@
 		html { 
 			background: #f0f0f0;
 			height: 100vh;
-			background: linear-gradient(80deg, #4facfe 0%, #00f2fe 100%);
+			/* background: linear-gradient(80deg, #4facfe 0%, #00f2fe 100%); */
 		}
 
 		@media (-webkit-device-pixel-ratio: 2) {
