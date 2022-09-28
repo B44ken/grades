@@ -56,6 +56,15 @@ class UserData {
     listCourses() {
         return Object.keys(this.userData.courses)
     }
+
+    overallAverage = () => {
+        let total = 0
+        for(let course of this.listCourses()) {
+            let courseData = this.getCourse(course)
+            total += gradeAverage(courseData.grades)
+        }
+        return percent(total / this.listCourses().length)
+    }
 }
 
 const downloadPrompt = () => {

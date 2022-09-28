@@ -5,6 +5,8 @@ var data = new UserData()
 
 // lots of unneccessary adding and removing classes here
 const buildCourseList = () => {
+	$(".percent-overall").textContent = data.overallAverage()
+
 	var cardTemplate = $(".course-card-template")
 	var cardEntry = $(".course-card-entry")
 	// clean up selector?
@@ -20,7 +22,7 @@ const buildCourseList = () => {
 			el.querySelector(".name").textContent = courseName
 			el.querySelector(".code").textContent = course.meta.code
 			el.querySelector(".percent").textContent = percent(gradeAverage(data.getCourse(courseName).grades))
-			
+
 			el.id = courseName
 
 			el.addEventListener("click", (event) => {
@@ -56,8 +58,8 @@ const addGradeClick = (event) => {
 		$("[Placeholder='Name']").value
 	]
 	const existingNames = course.grades.map(grade => grade[2])
-	if(arr[0] > 0 || arr[1] > 1 || arr[2] == "") {
-		$(".add-grade-warn").textContent = "Please fill in all fields!"
+	if(arr[0] <= 0 || arr[1] <= 1 || arr[2] == "") {
+		$(".add-grade-warn").textContent = "Please fill in all fields!" + [arr[0] > 0, arr[1] > 1, arr[2] == "", arr[0], arr[1]]
 		$(".add-grade-warn").classList.remove("is-hidden")
 	} else if(existingNames.includes(arr[2])) {
 		$(".add-grade-warn").textContent = "Name is not unique!"
