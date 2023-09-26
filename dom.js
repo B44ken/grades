@@ -53,8 +53,8 @@ const addGradeClick = (event) => {
 	var courseName = $(".details-name").textContent
 	var course = data.getCourse(courseName)
 	arr = [
-		parseInt($("[Placeholder='Earned mark']").value),
-		parseInt($("[Placeholder='Max mark']").value),
+		parseFloat($("[Placeholder='Earned mark']").value),
+		parseFloat($("[Placeholder='Max mark']").value),
 		$("[Placeholder='Name']").value
 	]
 	const existingNames = course.grades.map(grade => grade[2])
