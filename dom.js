@@ -58,7 +58,7 @@ const addGradeClick = (event) => {
 		$("[Placeholder='Name']").value
 	]
 	const existingNames = course.grades.map(grade => grade[2])
-	if(arr[0] <= 0 || arr[1] <= 1 || arr[2] == "") {
+	if(arr[0] <= 0 || arr[1] <= 0 || arr[2] == "") {
 		$(".add-grade-warn").textContent = "Please fill in all fields!" + [arr[0] > 0, arr[1] > 1, arr[2] == "", arr[0], arr[1]]
 		$(".add-grade-warn").classList.remove("is-hidden")
 	} else if(existingNames.includes(arr[2])) {
